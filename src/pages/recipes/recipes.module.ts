@@ -13,4 +13,9 @@ import { Recipes } from './recipes';
     Recipes
   ]
 })
-export class RecipesModule {}
+export class RecipesModule {
+
+
+
+
+}

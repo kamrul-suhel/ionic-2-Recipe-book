@@ -16,14 +16,27 @@ export class ShoppingList {
   constructor(private shopingListService : ShopingListService){
   }
 
+  ionViewWillEnter(){
+    this.loadItem();
+  }
+
   onAddItem(form : NgForm){
     let name = form.value.ingredientName;
     let amount = form.value.amount;
     const ingredient = new Ingredient(name, amount);
 
     this.shopingListService.addItem(ingredient);
-    this.shopingListItems = this.shopingListService.getAllIngredients();
     form.reset();
+    this.loadItem();
+  }
+
+  private loadItem(){
+    this.shopingListItems = this.shopingListService.getAllIngredients();
+  }
+
+  public onDeleteItem(item : Ingredient){
+    this.shopingListService.removeItemByObject(item);
+    this.loadItem();
   }
 
 }
