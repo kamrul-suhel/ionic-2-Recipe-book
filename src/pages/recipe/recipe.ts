@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {RecipeService} from "../../providers/recipe";
+import {RecipeModal} from "../../models/recipesModal";
 
 /**
  * Generated class for the Recipe page.
@@ -12,13 +14,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-recipe',
   templateUrl: 'recipe.html',
 })
-export class Recipe {
+export class Recipe implements OnInit{
+  recipe: RecipeModal;
+  id: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private recipeServices: RecipeService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Recipe');
+  ionViewDidLoad() {}
+
+  ngOnInit(){
+      this.id = this.navParams.get('id');
+      this.recipe = this.recipeServices.getRecipeById(this.id);
   }
 
 }
