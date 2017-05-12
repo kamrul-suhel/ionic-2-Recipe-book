@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EditRecipe} from "../edit-recipe/edit-recipe";
 import {RecipeService} from "../../providers/recipe";
@@ -16,7 +16,7 @@ import {Recipe} from "../recipe/recipe";
   selector: 'page-recipes',
   templateUrl: 'recipes.html',
 })
-export class Recipes {
+export class Recipes implements OnInit {
 
   recipes : RecipeModal[] =[];
 
@@ -30,6 +30,10 @@ export class Recipes {
   ionViewDidLoad() {
   }
 
+  ngOnInit(){
+
+  }
+
   public onNewRecipe(){
     this.navCtrl.push(EditRecipe, {mode : 'New'});
   }
@@ -37,5 +41,6 @@ export class Recipes {
   onLoadRecipe(recipe, i){
     this.navCtrl.push(Recipe, {recipe : recipe, id: i});
   }
+
 
 }
